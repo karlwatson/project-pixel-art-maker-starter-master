@@ -3,7 +3,7 @@
 const submitButton = $("#submitButton");
 const colorPickerSelect = $("#colorPicker");
 let tableDraw = $("#pixelCanvas");
-let currentColor;
+let currentColor = "#000000";
 // let height = 1;
 // let width = 1;
 let color = null;
@@ -17,10 +17,10 @@ function makeGrid() {
   let inputWidth = Number($("#inputWidth").val());
 
   for (let i = 0; i < inputHeight; i++) {
-    $(tableDraw).append( `<tr class = "Row${i}" id = "temp">`);
+    $(tableDraw).append(`<tr class = "Row${i}" id = "temp">`);
     let temp = $(`.Row${i}`);
     for (let j = 0; j < inputWidth; j++) {
-      $(temp).append( `<td class = "Row${i}_Column${j}">&nbsp;</td>` );
+      $(temp).append(`<td class = "Row${i}_Column${j}"></td>`);
       }
     }
   }
@@ -37,9 +37,30 @@ function makeGrid() {
   // Select color input
   colorPickerSelect.on('change', function(evt) {
     evt.preventDefault();
-    let val = $(this).val();
-    currentColor = val;
-    window.alert(`Selected Color is ${val}`);
+    let colorValue = $(this).val();
+    currentColor = colorValue;
+    // window.alert(`Selected Color is ${colorValue}`);
+  });
+
+  // Event Listener for selecting a table / grid element
+
+  $('table').on('click', 'td', function(evt)  {
+    evt.preventDefault();
+    $(this).css('background-color', `${currentColor}`);
+
+
+
+    // if ($(this).css('background-color') !== 'rgb(255, 255, 255)') {
+    //   $(this).css('background-color', "#FFFFFF");
+    //   // window.alert(`Color: ${$(this).css('background-color')}`)
+    // } else {
+    //   $(this).css('background-color', `${currentColor}`);
+    // }
+  //   window.alert(`Event Target ${$(event.target)},
+  //                 Event item ${$(event)},
+  //                 "This" keyword ${$(this)`}
+  //
+  //   `)
   });
 
 
