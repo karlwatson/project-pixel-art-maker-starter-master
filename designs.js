@@ -1,9 +1,9 @@
 // DOM Selectors
 
 const submitButton = $("#submitButton");
-const colorPickerButton = $("#colorPicker");
+const colorPickerSelect = $("#colorPicker");
 let tableDraw = $("#pixelCanvas");
-
+let currentColor;
 // let height = 1;
 // let width = 1;
 let color = null;
@@ -29,14 +29,18 @@ function makeGrid() {
 
   // Select size input
 
-  $("#submitButton").on('click', function(evt) {
+  submitButton.on('click', function(evt) {
     evt.preventDefault();
     makeGrid();
   });
 
   // Select color input
-
-
+  colorPickerSelect.on('change', function(evt) {
+    evt.preventDefault();
+    let val = $(this).val();
+    currentColor = val;
+    window.alert(`Selected Color is ${val}`);
+  });
 
 
 
