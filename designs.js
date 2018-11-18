@@ -1,25 +1,46 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
+// DOM Selectors
 
 const submitButton = $("#submitButton");
 const colorPickerButton = $("#colorPicker");
-let inputHeight = $("#inputHeight");
-let inputWidth = $("#inputWidth");
 let tableDraw = $("#pixelCanvas");
 
+// let height = 1;
+// let width = 1;
+let color = null;
+// When size is submitted by the user, call makeGrid()
+
 function makeGrid() {
+  // Remove existing Table elements
+  tableDraw.children('*').remove();
+
+  let inputHeight = Number($("#inputHeight").val());
+  let inputWidth = Number($("#inputWidth").val());
 
   for (let i = 0; i < inputHeight; i++) {
     $(tableDraw).append( `<tr class = "Row${i}" id = "temp">`);
     let temp = $(`.Row${i}`);
-    for (let i = 0; i < inputWidth; i++) {
-      $(temp).append( `<td class = "Column${i}">&nbsp;</td>` );
+    for (let j = 0; j < inputWidth; j++) {
+      $(temp).append( `<td class = "Row${i}_Column${j}">&nbsp;</td>` );
       }
     }
-
-  // Your code goes here!
-
   }
-// Your code goes here!
+
+  // Event Listeners for Height, Width, and Color value
+
+  // Select size input
+
+  $("#submitButton").on('click', function(evt) {
+    evt.preventDefault();
+    makeGrid();
+  });
+
+  // Select color input
+
+
+
+
+
+  // Useful
+
+  //   window.alert(`Height is ${height}, Width is ${width}`);
+  // });
