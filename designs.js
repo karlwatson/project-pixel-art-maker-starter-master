@@ -15,14 +15,14 @@ function makeGrid() {
     let temp = $(`.Row${i}`);
     for (let j = 0; j < inputWidth; j++) {
       $(temp).append(`<td class = "Row${i}_Column${j}"></td>`);
-      }
     }
   }
+}
 
   // Event Listeners for Height & Width, and for Clicking the table's cells
-  
+
   // Select size input
-  submitButton.on('click', function(evt) {
+  submitButton.on('click', function(evt)  {
     evt.preventDefault();
     makeGrid();
   });
