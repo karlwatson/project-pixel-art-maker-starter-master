@@ -1,15 +1,12 @@
 // DOM Selectors
 const submitButton = $("#submitButton");
-const colorPickerSelect = $("#colorPicker");
-let tableDraw = $("#pixelCanvas");
-let currentColor = "#000000";
-let color = null;
+let colorPickerSelect = $("#colorPicker");
 
 // When size is submitted by the user, call makeGrid()
 function makeGrid() {
+  let tableDraw = $("#pixelCanvas");
   // Remove existing Table elements
   tableDraw.children('*').remove();
-
   let inputHeight = Number($("#inputHeight").val());
   let inputWidth = Number($("#inputWidth").val());
 
@@ -22,23 +19,16 @@ function makeGrid() {
     }
   }
 
-  // Event Listeners for Height, Width, and Color value
-
+  // Event Listeners for Height & Width, and for Clicking the table's cells
+  
   // Select size input
   submitButton.on('click', function(evt) {
     evt.preventDefault();
     makeGrid();
   });
-
-  // Select color input
-  colorPickerSelect.on('change', function(evt) {
-    evt.preventDefault();
-    let colorValue = $(this).val();
-    currentColor = colorValue;
-  });
-
   // Event Listener for selecting a table / grid element
   $('table').on('click', 'td', function(evt)  {
+    let currentColor = colorPickerSelect.val();
     if ($(this).css('background-color') === 'rgba(0, 0, 0, 0)') {
       $(this).css('background-color', `${currentColor}`);
     } else {
