@@ -1,14 +1,11 @@
 // DOM Selectors
-
 const submitButton = $("#submitButton");
 const colorPickerSelect = $("#colorPicker");
 let tableDraw = $("#pixelCanvas");
 let currentColor = "#000000";
-// let height = 1;
-// let width = 1;
 let color = null;
-// When size is submitted by the user, call makeGrid()
 
+// When size is submitted by the user, call makeGrid()
 function makeGrid() {
   // Remove existing Table elements
   tableDraw.children('*').remove();
@@ -28,7 +25,6 @@ function makeGrid() {
   // Event Listeners for Height, Width, and Color value
 
   // Select size input
-
   submitButton.on('click', function(evt) {
     evt.preventDefault();
     makeGrid();
@@ -39,33 +35,13 @@ function makeGrid() {
     evt.preventDefault();
     let colorValue = $(this).val();
     currentColor = colorValue;
-    // window.alert(`Selected Color is ${colorValue}`);
   });
 
   // Event Listener for selecting a table / grid element
-
   $('table').on('click', 'td', function(evt)  {
-    evt.preventDefault();
-    $(this).css('background-color', `${currentColor}`);
-
-
-
-    // if ($(this).css('background-color') !== 'rgb(255, 255, 255)') {
-    //   $(this).css('background-color', "#FFFFFF");
-    //   // window.alert(`Color: ${$(this).css('background-color')}`)
-    // } else {
-    //   $(this).css('background-color', `${currentColor}`);
-    // }
-  //   window.alert(`Event Target ${$(event.target)},
-  //                 Event item ${$(event)},
-  //                 "This" keyword ${$(this)`}
-  //
-  //   `)
+    if ($(this).css('background-color') === 'rgba(0, 0, 0, 0)') {
+      $(this).css('background-color', `${currentColor}`);
+    } else {
+      $(this).css('background-color', 'initial');
+    }
   });
-
-
-
-  // Useful
-
-  //   window.alert(`Height is ${height}, Width is ${width}`);
-  // });
